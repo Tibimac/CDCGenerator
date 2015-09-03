@@ -58,6 +58,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42A0F61D1B9827B0004C8F27 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		42A0F61E1B9827B7004C8F27 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		42A0F61F1B9827BC004C8F27 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		52628C321B8C517B008D5B34 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +100,9 @@
 		52628C3D1B8C517B008D5B34 /* CDCGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				42A0F61F1B9827BC004C8F27 /* Controller */,
+				42A0F61E1B9827B7004C8F27 /* View */,
+				42A0F61D1B9827B0004C8F27 /* Model */,
 				52628C401B8C517B008D5B34 /* AppDelegate.h */,
 				52628C411B8C517B008D5B34 /* AppDelegate.m */,
 				52628C451B8C517B008D5B34 /* ViewController.h */,
@@ -410,6 +434,7 @@
 				52628C5D1B8C517B008D5B34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52628C5E1B8C517B008D5B34 /* Build configuration list for PBXNativeTarget "CDCGeneratorTests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +443,7 @@
 				52628C601B8C517B008D5B34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
