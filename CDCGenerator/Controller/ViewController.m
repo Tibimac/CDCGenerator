@@ -53,7 +53,9 @@
             NSURL*  theDoc = [[panel URLs] objectAtIndex:0];
             
             NSLog(@"You have selected the following doc : %@", [theDoc absoluteURL]);
-            // Open  the document.
+
+            NSXMLParser *xmlParser = [[ NSXMLParser alloc] initWithContentsOfURL:theDoc];
+            [xmlParser setDelegate:self];
         }
         
     }];
