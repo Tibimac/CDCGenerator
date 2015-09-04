@@ -10,4 +10,6 @@
 
 @interface FileGenerator : NSObject
 
++(void)generateDataCoordinator:(NSURL *)url;
+
 @end

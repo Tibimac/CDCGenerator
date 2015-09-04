@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4223A6ED1B98958C000FC3D7 /* DataCoordinator.h.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4223A6E91B98958C000FC3D7 /* DataCoordinator.h.txt */; };
+		4223A6EE1B98958C000FC3D7 /* DataCoordinator.m.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4223A6EA1B98958C000FC3D7 /* DataCoordinator.m.txt */; };
+		4223A6EF1B98958C000FC3D7 /* DataModel.h.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4223A6EB1B98958C000FC3D7 /* DataModel.h.txt */; };
+		4223A6F01B98958C000FC3D7 /* DataModel.m.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4223A6EC1B98958C000FC3D7 /* DataModel.m.txt */; };
 		42A0F6251B9828A7004C8F27 /* FileGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0F6241B9828A7004C8F27 /* FileGenerator.m */; };
 		42A0F62E1B982D53004C8F27 /* FileGeneratorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0F62B1B982D53004C8F27 /* FileGeneratorVC.m */; };
 		42A0F62F1B982D53004C8F27 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A0F62D1B982D53004C8F27 /* ViewController.m */; };
@@ -28,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4223A6E91B98958C000FC3D7 /* DataCoordinator.h.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DataCoordinator.h.txt; sourceTree = "<group>"; };
+		4223A6EA1B98958C000FC3D7 /* DataCoordinator.m.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DataCoordinator.m.txt; sourceTree = "<group>"; };
+		4223A6EB1B98958C000FC3D7 /* DataModel.h.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DataModel.h.txt; sourceTree = "<group>"; };
+		4223A6EC1B98958C000FC3D7 /* DataModel.m.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DataModel.m.txt; sourceTree = "<group>"; };
 		42A0F6231B9828A7004C8F27 /* FileGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileGenerator.h; path = Model/FileGenerator.h; sourceTree = "<group>"; };
 		42A0F6241B9828A7004C8F27 /* FileGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileGenerator.m; path = Model/FileGenerator.m; sourceTree = "<group>"; };
 		42A0F62A1B982D53004C8F27 /* FileGeneratorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileGeneratorVC.h; sourceTree = "<group>"; };
@@ -64,6 +72,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4223A6E81B98958C000FC3D7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4223A6E91B98958C000FC3D7 /* DataCoordinator.h.txt */,
+				4223A6EA1B98958C000FC3D7 /* DataCoordinator.m.txt */,
+				4223A6EB1B98958C000FC3D7 /* DataModel.h.txt */,
+				4223A6EC1B98958C000FC3D7 /* DataModel.m.txt */,
+			);
+			name = Resources;
+			path = SupportTexts;
+			sourceTree = "<group>";
+		};
 		42A0F61D1B9827B0004C8F27 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +137,7 @@
 				42A0F61E1B9827B7004C8F27 /* View */,
 				42A0F6291B982D53004C8F27 /* Controller */,
 				52628C481B8C517B008D5B34 /* Images.xcassets */,
+				4223A6E81B98958C000FC3D7 /* Resources */,
 				52628C3E1B8C517B008D5B34 /* Supporting Files */,
 			);
 			path = CDCGenerator;
@@ -199,7 +220,7 @@
 				TargetAttributes = {
 					52628C3A1B8C517B008D5B34 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = W43TK7BXYU;
+						DevelopmentTeam = LH3NPG2M8S;
 					};
 					52628C501B8C517B008D5B34 = {
 						CreatedOnToolsVersion = 6.4;
@@ -231,8 +252,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4223A6EF1B98958C000FC3D7 /* DataModel.h.txt in Resources */,
+				4223A6EE1B98958C000FC3D7 /* DataCoordinator.m.txt in Resources */,
+				4223A6ED1B98958C000FC3D7 /* DataCoordinator.h.txt in Resources */,
 				52628C491B8C517B008D5B34 /* Images.xcassets in Resources */,
 				52628C4C1B8C517B008D5B34 /* Main.storyboard in Resources */,
+				4223A6F01B98958C000FC3D7 /* DataModel.m.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,11 +396,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = CDCGenerator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -383,11 +409,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = CDCGenerator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

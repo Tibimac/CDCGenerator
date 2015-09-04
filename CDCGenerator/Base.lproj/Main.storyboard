@@ -682,6 +682,16 @@
                                     <action selector="buttonOpenCDModelAction:" target="XfG-lQ-9wD" id="pue-12-7WM"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHX-Y8-gM0">
+                                <rect key="frame" x="158" y="132" width="164" height="32"/>
+                                <buttonCell key="cell" type="push" title="Save DataManagers" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8lG-IF-iNY">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleSaveDataManagersAction:" target="XfG-lQ-9wD" id="X3S-1y-OhH"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                 </viewController>

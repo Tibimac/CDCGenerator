@@ -1,0 +1,35 @@
+//
+//  DataModel.h
+//  Quizz_Objc
+//
+//  Created by François Juteau on 20/08/2015.
+//  Copyright (c) 2015 François Juteau. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
+@interface DataModel : NSObject
+
+- (NSManagedObject *)newObjectForTable:(NSString *)table;
+
+- (NSArray *)getAll:(NSString *)table;
+
+- (NSArray *)getAll:(NSString *)table orderBy:(NSString *)order ascending:(BOOL)ascending;
+
+- (NSArray *)getAll:(NSString *)table where:(NSString *)atribute like:(NSString *)value orderBy:(NSString *)order ascending:(BOOL)ascending;
+
+- (NSManagedObject *)getObjectFrom:(NSString *)table withAttribute:(NSString *)attribute equalTo:(id)value;
+
+- (NSArray *)getAllFrom:(NSString *)table withAttribute:(NSString *)attribute equalTo:(id)value;
+- (NSManagedObject *)getObjectFrom:(NSString *)table withAttribute:(NSString *)attribute equalTo:(NSString *)value excludingLastPartAfteRString:(NSString *)separator;
+
+#pragma mark - Delete Method
+
+- (void)deleteObject:(NSManagedObject *)object;
+
+#pragma mark - Save Method
+
+- (BOOL)save;
+
+@end

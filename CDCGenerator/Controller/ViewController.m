@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "FileGenerator.h"
 
 @implementation ViewController
 
@@ -28,6 +29,13 @@
     [self openDocument];
 }
 
+- (IBAction)handleSaveDataManagersAction:(id)sender
+{
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    [savePanel beginWithCompletionHandler:^(NSInteger result) {
+        [FileGenerator generateDataCoordinator:savePanel.URL];
+    }];
+}
 
 - (void)openDocument
 {

@@ -1,0 +1,170 @@
+//
+//  DataModel.m
+//  Quizz_Objc
+//
+//  Created by François Juteau on 20/08/2015.
+//  Copyright (c) 2015 François Juteau. All rights reserved.
+//
+
+#import "DataModel.h"
+#import "DataCoordinator.h"
+#import "Helper.h"
+
+@interface DataModel ()
+
+@property (strong, nonatomic) NSManagedObjectContext *context;
+
+@end
+
+@implementation DataModel
+
+- (NSManagedObjectContext *)context
+{
+    return [DataCoordinator sharedInstance].managedObjectContext;
+}
+
+- (NSManagedObject *)newObjectForTable:(NSString *)table
+{
+    return [NSEntityDescription insertNewObjectForEntityForName:table inManagedObjectContext:self.context];
+}
+
+
+// Return All the objects from specific table
+- (NSArray *)getAll:(NSString *)table
+{
+    NSError *error = nil;
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:table];
+    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&error];
+    
+    return fetchedObjects;
+}
+
+// Return All the objects from specific table ordered by specific property
+- (NSArray *)getAll:(NSString *)table orderBy:(NSString *)order ascending:(BOOL)ascending
+{
+    NSError *error = nil;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:table
+                                              inManagedObjectContext:self.context];
+    NSArray *sortDescriptor = [NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:order ascending:ascending]];
+    [fetchRequest setSortDescriptors:sortDescriptor];
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&error];
+    
+    return fetchedObjects;
+}
+
+// same as the precedent, but with a where attribute like value
+- (NSArray *)getAll:(NSString *)table where:(NSString *)atribute like:(NSString *)value orderBy:(NSString *)order ascending:(BOOL)ascending
+{
+    NSError *error = nil;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:table
+                                              inManagedObjectContext:self.context];
+    
+    NSArray *sortDescriptor = [NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:order ascending:ascending]];
+    [fetchRequest setSortDescriptors:sortDescriptor];
+    NSPredicate *fetchPredicate = [NSPredicate predicateWithFormat:@"%K like[cd] %@", atribute, [NSString stringWithFormat:@"*%@*", value]];
+    [fetchRequest setPredicate: fetchPredicate];
+    
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&error];
+    
+    return fetchedObjects;
+}
+
+
+- (NSManagedObject *)getObjectFrom:(NSString *)table withAttribute:(NSString *)attribute equalTo:(id)value
+{
+    NSArray *list = [self getAll:table] ;
+    
+    for (NSManagedObject *object in list)
+    {
+        if ([[object valueForKey:attribute] isEqual:value])
+        {
+            return object ;
+        }
+    }
+    return nil ;
+}
+
+- (NSManagedObject *)getObjectFrom:(NSString *)table withAttribute:(NSString *)attribute equalTo:(NSString *)value excludingLastPartAfteRString:(NSString *)separator
+{
+    NSArray *list = [self getAll:table] ;
+    
+    for (NSManagedObject *object in list)
+    {
+        NSString *objectString = [object valueForKey:attribute];
+        NSArray *components = [objectString componentsSeparatedByString:separator];
+        
+        if (components && components.count)
+        {
+            NSRange range = [objectString rangeOfString:[NSString stringWithFormat:@"%@%@", separator, components.lastObject]];
+            
+            if (range.location != NSNotFound)
+            {
+                objectString = [objectString stringByReplacingCharactersInRange:range withString:@""];
+            }
+        }
+        
+        
+        if ([objectString isEqual:value])
+        {
+            return object ;
+        }
+    }
+    return nil ;
+}
+
+
+- (NSArray *)getAllFrom:(NSString *)table withAttribute:(NSString *)attribute equalTo:(id)value
+{
+//    NSError *error = nil;
+//    
+//    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:table];
+//    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%@ == %@", attribute, value];
+//    
+//    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&error];
+//    
+//    return fetchedObjects;
+    
+    NSArray *list = [self getAll:table];
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSManagedObject *object in list)
+    {
+        if ([[object valueForKey:attribute] isEqual:value])
+        {
+            [array addObject:object];
+        }
+    }
+    return array;
+}
+
+#pragma mark - Delete Method
+
+- (void)deleteObject:(NSManagedObject *)object
+{
+    if (object) [self.context deleteObject:object];
+}
+
+
+#pragma mark - Save Method
+
+- (BOOL)save
+{
+    BOOL ret = YES;
+    NSError *error;
+    if (![self.context save:&error]) {
+        DLOG(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        DLOG(@"\nCode : %i \nDomain: %@ \nUserInfo : %@", (int)error.code, error.domain, error.userInfo);
+        DLOG(@"Recovery options : %@", error.localizedRecoveryOptions);
+        DLOG(@"Recovery sugestion : %@", error.localizedRecoverySuggestion);
+        DLOG(@"Failure Reason : %@", error.localizedFailureReason);
+        DLOG(@"Help anchor : %@", error.helpAnchor);
+        ret = NO;
+    }
+    return ret;
+}
+@end
+
